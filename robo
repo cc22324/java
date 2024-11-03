@@ -1,0 +1,104 @@
+package stich;
+import robocode.*;
+
+public class Stich extends Robot {
+	/**
+	 * run: Comportamento padrão do robô Stich
+	 */
+	public void run() {
+		// Definindo uma cor para o radar
+		// setColors(Color.red, Color.blue, Color.green); // body, gun, radar
+
+		// Loop principal do robô
+		while (true) {
+			// Movimento do robô
+			ahead(100);
+			back(50);
+			turnRight(90);
+			turnLeft(45);
+			
+			// Gira o radar continuamente para procurar inimigos
+			turnRadarRight(360);  // Faz o radar girar em 360 graus
+		}
+	}
+
+	/**
+	 * onScannedRobot: O que fazer ao detectar outro robô
+	 */
+	public void onScannedRobot(ScannedRobotEvent e) {
+		// Ajusta o radar para manter o inimigo no centro
+		double angleToEnemy = getHeading() - getRadarHeading() + e.getBearing();
+		turnRadarRight(angleToEnemy);  // Alinha o radar com o inimigo
+
+		// Mira o canhão no inimigo e dispara
+		double angleToEnemyGun = getHeading() - getGunHeading() + e.getBearing();
+		turnGunRight(angleToEnemyGun);package stich;
+import robocode.*;
+
+public class Stich extends Robot {
+	/**
+	 * run: Comportamento padrão do robô Stich
+	 */
+	public void run() {
+		// Definindo uma cor para o radar
+		// setColors(Color.red, Color.blue, Color.green); // body, gun, radar
+
+		// Loop principal do robô
+		while (true) {
+			// Movimento do robô
+			ahead(100);
+			back(50);
+			turnRight(90);
+			turnLeft(45);
+			
+			// Gira o radar continuamente para procurar inimigos
+			turnRadarRight(360);  // Faz o radar girar em 360 graus
+		}
+	}
+
+	/**
+	 * onScannedRobot: O que fazer ao detectar outro robô
+	 */
+	public void onScannedRobot(ScannedRobotEvent e) {
+		// Ajusta o radar para manter o inimigo no centro
+		double angleToEnemy = getHeading() - getRadarHeading() + e.getBearing();
+		turnRadarRight(angleToEnemy);  // Alinha o radar com o inimigo
+
+		// Mira o canhão no inimigo e dispara
+		double angleToEnemyGun = getHeading() - getGunHeading() + e.getBearing();
+		turnGunRight(angleToEnemyGun);
+		fire(1);
+	}
+
+	/**
+	 * onHitByBullet: O que fazer ao ser atingido por um tiro
+	 */
+	public void onHitByBullet(HitByBulletEvent e) {
+		back(10);  // Recuar ao ser atingido
+	}
+	
+	/**
+	 * onHitWall: O que fazer ao bater em uma parede
+	 */
+	public void onHitWall(HitWallEvent e) {
+		back(20);  // Recuar ao colidir com uma parede
+	}	
+}
+
+		fire(1);
+	}
+
+	/**
+	 * onHitByBullet: O que fazer ao ser atingido por um tiro
+	 */
+	public void onHitByBullet(HitByBulletEvent e) {
+		back(10);  // Recuar ao ser atingido
+	}
+	
+	/**
+	 * onHitWall: O que fazer ao bater em uma parede
+	 */
+	public void onHitWall(HitWallEvent e) {
+		back(20);  // Recuar ao colidir com uma parede
+	}	
+}
